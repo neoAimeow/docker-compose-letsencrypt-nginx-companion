@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+   blog:
+     image: ghost
+     container_name: aimeow_blog
+     restart: unless-stopped
+     expose:
+           - "443"
+     volumes:
+       - /root/aimeow_blog:/var/lib/ghost/content
+     environment:
+       VIRTUAL_HOST: aimeow.com,www.aimeow.com
+       VIRTUAL_PORT: 2368
+       LETSENCRYPT_HOST: aimeow.com,www.aimeow.com
+       LETSENCRYPT_EMAIL: a18814888787@gmail.com
+
+networks:
+    default:
+       external:
+         name: nginx-proxy
